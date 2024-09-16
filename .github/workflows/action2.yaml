@@ -8,11 +8,12 @@ jobs:
   testjob:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v4
     - run: |
         echo hoge >> hoge.txt
         echo hoge >> hoge.txt
         echo hoge >> hoge.txt
     - id: diff
-      run: echo "diff=$(git diff --name-only hoge.txt)" > $GITHUB_OUTPUT
+      run: echo "diff=$(git diff hoge.txt)" > $GITHUB_OUTPUT
 
     - run: echo ${{ steps.diff.outputs.diff }}
