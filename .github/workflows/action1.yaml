@@ -18,6 +18,6 @@ jobs:
     - uses: 'google-github-actions/auth@v2'
       with:
         project_id: 'utahiro-calendar'
-        workload_identity_provider: 'projects/306157530435/locations/global/workloadIdentityPools/github-actions-pool/providers/github-actions-pool-provider'
+        workload_identity_provider: 'projects/306157530435/locations/global/workloadIdentityPools/github-actions-pool/providers/github-actions-provider'
   
     - run: ls -la
