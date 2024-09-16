@@ -1,7 +1,7 @@
 name: TestAction2
 
 on:
-  # push:
+  push:
   workflow_dispatch:
 
 jobs:
