@@ -20,7 +20,5 @@ jobs:
         project_id: 'utahiro-calendar'
         workload_identity_provider: 'projects/306157530435/locations/global/workloadIdentityPools/github-actions-pool/providers/github-actions-provider'
   
-    - run: |
-        echo $GOOGLE_APPLICATION_CREDENTIALS
-    
+    - run: pip install google-api-python-client google-auth-httplib2 google-auth-oauthlib
     - run: python3 test.py
