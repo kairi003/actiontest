@@ -23,6 +23,8 @@ jobs:
     #     workload_identity_provider: 'projects/306157530435/locations/global/workloadIdentityPools/github-actions-pool/providers/github-actions-provider'
     #     access_token_scopes: https://www.googleapis.com/auth/calendar.events.owned
   
-    - run: echo "${{ secrets.USER_TOKEN }}" > token.json
+    - run: echo "$USER_TOKEN" > token.json
+      env:
+        USER_TOKEN: ${{ secrets.USER_TOKEN }}
     - run: pip install google-api-python-client google-auth-httplib2 google-auth-oauthlib
     - run: python3 test.py
