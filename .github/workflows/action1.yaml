@@ -5,17 +5,18 @@ on:
   workflow_dispatch:
 
 jobs:
-  test-action1:
-    runs-on: ubuntu-latest
+  job_id:
+    # Add "id-token" with the intended permissions.
+    permissions:
+      contents: 'read'
+      id-token: 'write'
 
     steps:
-    - id: def
-      run: |
-        echo "a=2024-09-16" >> $GITHUB_OUTPUT
-        echo "b=2024-09-17" >> $GITHUB_OUTPUT
-    
-    - run: exit 1
-    
-    - run: echo 2
-    
-    - run: echo 3
+    - uses: 'actions/checkout@v4'
+
+    - uses: 'google-github-actions/auth@v2'
+      with:
+        project_id: 'utahiro-calendar'
+        workload_identity_provider: 'projects/306157530435/locations/global/workloadIdentityPools/github-actions-pool/providers/github-actions-pool-provider'
+  
+    - run: ls -la
