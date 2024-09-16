@@ -15,13 +15,14 @@ jobs:
     steps:
     - uses: 'actions/checkout@v4'
 
-    - uses: 'google-github-actions/auth@v2'
-      with:
-        project_id: 'utahiro-calendar'
-        service_account: github-actions@utahiro-calendar.iam.gserviceaccount.com
-        token_format: access_token
-        workload_identity_provider: 'projects/306157530435/locations/global/workloadIdentityPools/github-actions-pool/providers/github-actions-provider'
-        access_token_scopes: https://www.googleapis.com/auth/calendar.events.owned
+    # - uses: 'google-github-actions/auth@v2'
+    #   with:
+    #     project_id: 'utahiro-calendar'
+    #     service_account: github-actions@utahiro-calendar.iam.gserviceaccount.com
+    #     token_format: access_token
+    #     workload_identity_provider: 'projects/306157530435/locations/global/workloadIdentityPools/github-actions-pool/providers/github-actions-provider'
+    #     access_token_scopes: https://www.googleapis.com/auth/calendar.events.owned
   
+    - run: echo ${{ secrets.USER_TOKEN }} > token.txt
     - run: pip install google-api-python-client google-auth-httplib2 google-auth-oauthlib
     - run: python3 test.py
