@@ -1,0 +1,16 @@
+name: TestAction2
+
+on:
+  workflow_dispatch:
+
+jobs:
+  container-test-job:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/kairi003/playwright-requests:v1.0
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+    - run: ls -la

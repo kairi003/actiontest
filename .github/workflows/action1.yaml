@@ -1,0 +1,19 @@
+name: TestAction1
+
+on:
+  workflow_dispatch:
+
+jobs:
+  pull-image:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Login to GitHub Container Registry
+      uses: docker/login-action@v3
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Docker Pull
+      run: docker pull ghcr.io/kairi003/playwright-requests:v1.0
