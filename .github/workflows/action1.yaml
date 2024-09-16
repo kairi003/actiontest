@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  job_id:
+  testjob:
     runs-on: ubuntu-latest
     # Add "id-token" with the intended permissions.
     permissions:
@@ -20,4 +20,7 @@ jobs:
         project_id: 'utahiro-calendar'
         workload_identity_provider: 'projects/306157530435/locations/global/workloadIdentityPools/github-actions-pool/providers/github-actions-provider'
   
-    - run: ls -la
+    - run: |
+        echo $GOOGLE_APPLICATION_CREDENTIALS
+    
+    - run: python3 test.py
