@@ -13,11 +13,8 @@ jobs:
         echo "a=2024-09-16" >> $GITHUB_OUTPUT
         echo "b=2024-09-17" >> $GITHUB_OUTPUT
     
-    - run: echo 1
-      if: steps.def.outputs.a < steps.def.outputs.b
+    - run: exit 1
     
     - run: echo 2
-      if: steps.def.outputs.a > steps.def.outputs.b
     
     - run: echo 3
-      if: steps.def.outputs.a == steps.def.outputs.b
