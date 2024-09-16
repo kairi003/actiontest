@@ -14,6 +14,8 @@ jobs:
         echo hoge >> hoge.txt
         echo hoge >> hoge.txt
     - id: diff
-      run: echo "diff=$(git diff hoge.txt)" > $GITHUB_OUTPUT
+      run: |
+        git diff hoge.txt
+        echo "diff=$(git diff hoge.txt)" > $GITHUB_OUTPUT
 
     - run: echo ${{ steps.diff.outputs.diff }}
