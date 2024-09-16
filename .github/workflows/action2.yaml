@@ -15,6 +15,7 @@ jobs:
         echo hoge >> hoge.txt
     - id: diff
       run: |
+        cat hoge.txt
         git diff hoge.txt
         echo "diff=$(git diff hoge.txt)" > $GITHUB_OUTPUT
 
