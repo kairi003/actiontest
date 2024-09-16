@@ -4,16 +4,20 @@ on:
   workflow_dispatch:
 
 jobs:
-  pull-image:
+  test-action1:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Login to GitHub Container Registry
-      uses: docker/login-action@v3
-      with:
-        registry: ghcr.io
-        username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
+    - id: def
+      run: |
+        echo "a=2024-09-16" >> $GITHUB_OUTPUT
+        echo "b=2024-09-17" >> $GITHUB_OUTPUT
     
-    - name: Docker Pull
-      run: docker pull ghcr.io/kairi003/playwright-requests:v1.0
+    - run: echo 1
+      if: steps.def.outputs.a < steps.def.outputs.b
+    
+    - run: echo 2
+      if: steps.def.outputs.a > steps.def.outputs.b
+    
+    - run: echo 3
+      if: steps.def.outputs.a == steps.def.outputs.b
