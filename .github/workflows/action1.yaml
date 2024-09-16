@@ -19,7 +19,7 @@ jobs:
       with:
         project_id: 'utahiro-calendar'
         service_account: github-actions@utahiro-calendar.iam.gserviceaccount.com
-        access_token_subject: {{ secrets.SERVICE_ACCOUNT_EMAIL }}
+        access_token_subject: ${{ secrets.SERVICE_ACCOUNT_EMAIL }}
         token_format: access_token
         workload_identity_provider: 'projects/306157530435/locations/global/workloadIdentityPools/github-actions-pool/providers/github-actions-provider'
         access_token_scopes: https://www.googleapis.com/auth/calendar.events.owned
