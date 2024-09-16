@@ -17,6 +17,6 @@ jobs:
       run: |
         cat hoge.txt
         git diff hoge.txt
-        echo "diff=$(git diff hoge.txt)" > $GITHUB_OUTPUT
+        echo "diff=$(git diff --name-only hoge.txt)" > $GITHUB_OUTPUT
 
     - run: echo ${{ steps.diff.outputs.diff }}
