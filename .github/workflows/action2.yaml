@@ -9,9 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - run: |
-        echo hoge > hoge.txt
-        echo hoge > hoge.txt
-        echo hoge > hoge.txt
+        echo hoge >> hoge.txt
+        echo hoge >> hoge.txt
+        echo hoge >> hoge.txt
     - id: diff
       run: echo "diff=$(git diff --name-only hoge.txt)" > $GITHUB_OUTPUT
 
