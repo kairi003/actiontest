@@ -6,9 +6,10 @@ import requests
 
 # クレデンシャルファイルのパス
 credentials_path = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS")
+SCOPES = ["https://www.googleapis.com/auth/calendar.events.owned"]
 
 # クレデンシャルをロード
-credentials, project = google.auth.load_credentials_from_file(credentials_path)
+credentials, project = google.auth.load_credentials_from_file(credentials_path, scopes=SCOPES)
 
 # アクセストークンをリクエスト
 credentials.refresh(Request())
