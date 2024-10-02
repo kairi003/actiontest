@@ -34,4 +34,4 @@ jobs:
         'https://www.googleapis.com/calendar/v3/calendars/11156d75f2d2f07e20adc131ffc8dd5d467edda9114a6c28f357b03e16578ca2%40group.calendar.google.com/events'
     
     - run: pip install google-api-python-client google-auth-httplib2 google-auth-oauthlib
-    - run: python3 test2.py
+    - run: python3 test4.py

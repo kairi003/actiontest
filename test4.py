@@ -1,25 +1,21 @@
+import google.auth
+from google.auth.transport.requests import Request
 from google.oauth2 import service_account
-import google.auth.transport.requests
-import google.auth.credentials
-from google.oauth2 import credentials
+import os
+import requests
 
-# 鍵ファイルのパスを指定
-SERVICE_ACCOUNT_FILE = 'sa.json'
+# クレデンシャルファイルのパス
+credentials_path = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS")
 
-# 使用するスコープを指定（例：Cloud Storage）
-SCOPES = ['https://www.googleapis.com/auth/calendar.events.owned']
+# クレデンシャルをロード
+credentials, project = google.auth.load_credentials_from_file(credentials_path)
 
-# サービスアカウントの認証情報を取得
-credentials = service_account.Credentials.from_service_account_file(
-    SERVICE_ACCOUNT_FILE, scopes=SCOPES)
-
-credentials.from_service_account_info
-# リクエストオブジェクトを作成
-request = google.auth.transport.requests.Request()
+# アクセストークンをリクエスト
+credentials.refresh(Request())
 
 # アクセストークンを取得
-credentials.refresh(request)
 access_token = credentials.token
-
-# アクセストークンを表示
-print(access_token, end='')
+tokeninfo_url = "https://www.googleapis.com/oauth2/v3/tokeninfo?access_token=" + access_token
+headers = { "Authorization": "Bearer " + access_token }
+resp = requests.get(tokeninfo_url, headers=headers)
+print(resp.json())

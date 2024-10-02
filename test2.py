@@ -22,8 +22,6 @@ def main():
   # time.
   service_account_path = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS")
   print(set(json.load(open(service_account_path)).keys()))
-  if 'GOOGLE_GHA_CREDS_PATH' in os.environ:
-    print(set(json.load(open(os.environ['GOOGLE_GHA_CREDS_PATH'])).keys()))
   creds = service_account.Credentials.from_service_account_file(service_account_path)
 
   try:
