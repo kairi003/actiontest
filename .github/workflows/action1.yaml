@@ -28,7 +28,7 @@ jobs:
         curl -H "Authorization: Bearer ${{ steps.auth.outputs.access_token }}"
         "https://www.googleapis.com/oauth2/v3/tokeninfo?access_token=${{ steps.auth.outputs.access_token }}"
 
-    - run: |-
+    - run: >-
         curl -H 'Authorization: Bearer ${{ steps.auth.outputs.access_token }}'
         'https://www.googleapis.com/calendar/v3/calendars/11156d75f2d2f07e20adc131ffc8dd5d467edda9114a6c28f357b03e16578ca2%40group.calendar.google.com/events'
 
