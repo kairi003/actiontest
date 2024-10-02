@@ -22,7 +22,7 @@ jobs:
         service_account: google-calendar-api@utahiro-calendar.iam.gserviceaccount.com
         workload_identity_provider: 'projects/306157530435/locations/global/workloadIdentityPools/github-actions-pool/providers/github-actions-provider'
         token_format: 'access_token'
-        access_token_scopes: 'https://www.googleapis.com/auth/calendar'
+        access_token_scopes: 'https://www.googleapis.com/auth/calendar.events.owned'
 
     - run: |-
         curl -H "Authorization: Bearer ${{ steps.auth.outputs.access_token }}" "https://www.googleapis.com/oauth2/v3/tokeninfo?access_token=${{ steps.auth.outputs.access_token }}"
