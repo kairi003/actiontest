@@ -23,6 +23,7 @@ jobs:
         workload_identity_provider: 'projects/306157530435/locations/global/workloadIdentityPools/github-actions-pool/providers/github-actions-provider'
         token_format: 'access_token'
         access_token_scopes: 'https://www.googleapis.com/auth/calendar.events.owned'
+        create_credentials_file: true
 
     - run: >-
         curl -H "Authorization: Bearer ${{ steps.auth.outputs.access_token }}"
@@ -31,9 +32,6 @@ jobs:
     - run: >-
         curl -H 'Authorization: Bearer ${{ steps.auth.outputs.access_token }}'
         'https://www.googleapis.com/calendar/v3/calendars/11156d75f2d2f07e20adc131ffc8dd5d467edda9114a6c28f357b03e16578ca2%40group.calendar.google.com/events'
-
-    # - run: echo "$USER_TOKEN" > token.json
-    #   env:
-    #     USER_TOKEN: ${{ secrets.USER_TOKEN }}
-    # - run: pip install 
-    # - run: python3 test.py
+    
+    - run: pip install google-api-python-client google-auth-httplib2 google-auth-oauthlib
+    - run: python3 test2.py
