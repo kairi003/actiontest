@@ -21,7 +21,6 @@ def main():
   # created automatically when the authorization flow completes for the first
   # time.
   service_account_path = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS")
-  print(set(json.load(open(service_account_path)).keys()))
   creds = service_account.Credentials.from_service_account_file(service_account_path)
 
   try:
