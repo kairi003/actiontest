@@ -16,11 +16,13 @@ jobs:
     - uses: 'actions/checkout@v4'
 
     - run: |
-        date >> actions.log
+        date | tee -a actions.log
+        git add actions.log
 
     - name: GitHub Commit & Push
       uses: actions-js/push@v1.5
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
+
 
 
