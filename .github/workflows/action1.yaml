@@ -15,23 +15,5 @@ jobs:
     steps:
     - uses: 'actions/checkout@v4'
 
-    - id: auth
-      uses: 'google-github-actions/auth@v2'
-      with:
-        project_id: 'utahiro-calendar'
-        service_account: google-calendar-api@utahiro-calendar.iam.gserviceaccount.com
-        workload_identity_provider: 'projects/306157530435/locations/global/workloadIdentityPools/github-actions-pool/providers/github-actions-provider'
-        token_format: 'access_token'
-        access_token_scopes: 'https://www.googleapis.com/auth/calendar'
-        create_credentials_file: true
-
-    - run: >-
-        curl -H "Authorization: Bearer ${{ steps.auth.outputs.access_token }}"
-        "https://www.googleapis.com/oauth2/v3/tokeninfo?access_token=${{ steps.auth.outputs.access_token }}"
-
-    - run: >-
-        curl -H 'Authorization: Bearer ${{ steps.auth.outputs.access_token }}'
-        'https://www.googleapis.com/calendar/v3/calendars/11156d75f2d2f07e20adc131ffc8dd5d467edda9114a6c28f357b03e16578ca2%40group.calendar.google.com/events'
-    
-    - run: pip install google-api-python-client google-auth-httplib2 google-auth-oauthlib
-    - run: python3 test2.py
+    - name: GitHub Commit & Push
+      uses: actions-js/push@v1.5
