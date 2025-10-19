@@ -20,16 +20,21 @@ jobs:
 
       - name: Commit and push changes
         run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           if git commit -m 'Update calendar data'; then
             git push
           else
             echo "No changes to commit"
           fi
+        env:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
     # - name: GitHub Commit & Push
     #   uses: actions-js/push@v1.5
     #   with:
     #     github_token: ${{ secrets.GITHUB_TOKEN }}
+
 
 
 
