@@ -12,16 +12,25 @@ jobs:
       contents: write
 
     steps:
-    - uses: 'actions/checkout@v4'
+      - uses: 'actions/checkout@v4'
+  
+      - run: |
+          date | tee -a actions_log.txt
+          git add actions_log.txt
 
-    - run: |
-        date | tee -a actions_log.txt
-        git add actions_log.txt
+      - name: Commit and push changes
+        run: |
+          if git commit -m 'Update calendar data'; then
+            git push
+          else
+            echo "No changes to commit"
+          fi
 
-    - name: GitHub Commit & Push
-      uses: actions-js/push@v1.5
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+    # - name: GitHub Commit & Push
+    #   uses: actions-js/push@v1.5
+    #   with:
+    #     github_token: ${{ secrets.GITHUB_TOKEN }}
+
 
 
 
