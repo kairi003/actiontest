@@ -17,12 +17,13 @@ jobs:
 
     - run: |
         date | tee -a actions_log.txt
-        git add actions_log.log
+        git add actions_log.txt
 
     - name: GitHub Commit & Push
       uses: actions-js/push@v1.5
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
+
 
 
 
